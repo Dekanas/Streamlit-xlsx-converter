@@ -42,7 +42,7 @@ def main():
                 transformed_df[sheet_name].to_excel(writer, sheet_name=sheet_name, index=False)
             writer.save()
             buffer.seek(0)
-   
+            
     @st.cache(allow_output_mutation=True)
     
     def get_data():
