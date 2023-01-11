@@ -43,6 +43,7 @@ def main():
             writer.save()
             buffer.seek(0)
    
+    st.cache(allow_output_mutation=True)
     
     def get_data():
         return buffer
