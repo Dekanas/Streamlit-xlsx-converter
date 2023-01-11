@@ -30,7 +30,7 @@ def main():
         transformed_df = {}
         for sheet_name in selected_sheets:
             sheet_df = pd.DataFrame(workbook[sheet_name].values)
-            
+            sheet_df.columns = [cell.value for cell in workbook[sheet_name][1]]
             sheet_df = sheet_df[selected_columns[sheet_name]]
             transformed_df[sheet_name] = sheet_df
         
