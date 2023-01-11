@@ -3,6 +3,7 @@ import pandas as pd
 import openpyxl
 from io import BytesIO
 
+@st.cache
 def main():
     st.set_page_config(page_title="Excel File Processing App", page_icon=":guardsman:", layout="wide")
     st.title("Upload Excel File")
@@ -43,10 +44,7 @@ def main():
             writer.save()
             buffer.seek(0)
             
-    import builtins
-    def my_hash_func(func):
-        return func.__name__
-    @st.cache(hash_funcs={types.FunctionType: my_hash_func})   
+    
     
     def get_data():
         return buffer
