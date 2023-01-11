@@ -14,11 +14,8 @@ if uploaded_file is not None:
 
     # Transforming data
     new_excel = df[['Reference No.', 'Claim No.', 'Country', 'Claim type', 'Became a claim?', 'Claim status (closed/open)', 'Claim open date', 'Claim close date', 'Total claim cost so far (EUR with VAT)', 'Repair cost (EUR with VAT)', 'Parts cost (with VAT)', 'Shipping paid by the service (EUR/with VAT)', 'Shiping cost (EUR with VAT)', 'Disposal cost (EUR with VAT)']]
-
+    st.dataframe(new_excel)
     # Download transformed data
-    buffer = BytesIO()
-    export_file = new_excel.to_excel(buffer, index = None, header=True)
-    buffer.seek(0)
     st.write("Transform Done!")
     st.markdown("### Download transformed data:")
-    st.download_button('Download xlsx', new_excel)
+    st.download_button('Download XLSX', new_excel, 'new_excel.xlsx', 'text/csv')
