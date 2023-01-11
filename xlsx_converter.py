@@ -21,7 +21,6 @@ if uploaded_file is not None:
     df.to_excel(writer, index=False, sheet_name='Sheet1')
     workbook = writer.book
     worksheet = writer.sheets['Sheet1']
-    worksheet.set_column('A:A', None, format1)
     writer.save()
     
     st.download_button(
