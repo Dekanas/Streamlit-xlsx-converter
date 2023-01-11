@@ -48,12 +48,7 @@ def main():
             writer.save()
             buffer.seek(0)
     # Add the download button and set the file name
-    st.markdown("""
-    <form action='download' method='post'>
-        <input type='hidden' name='file' value='transformed_data.xlsx'/>
-        <input type='submit' value='Download' style='background-color: #337ab7;
-        border-color: #2e6da4;'/>
-    </form>""", unsafe_allow_html=True)
+    
     
     @st.cache(allow_output_mutation=True)
     def get_data():
