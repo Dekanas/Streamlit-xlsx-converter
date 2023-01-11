@@ -43,7 +43,10 @@ def main():
             writer.save()
             buffer.seek(0)
             
-    @st.cache(allow_output_mutation=True)
+    import builtins
+    def my_hash_func(func):
+        return func.__name__
+    @st.cache(hash_funcs={builtins.function: my_hash_func})        
     
     def get_data():
         return buffer
