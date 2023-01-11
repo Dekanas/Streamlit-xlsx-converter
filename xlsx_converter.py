@@ -21,7 +21,7 @@ if uploaded_file is not None:
     buffer.seek(0)
     st.write("Transform Done!")
     st.markdown("### Download transformed data:")
-    file = st.file_uploader("", type=["xls", "xlsx"],encoding='utf-8', key='file')
+    file = st.file_uploader("", type=["xls", "xlsx"], key='file')
     if file:
         buffer.seek(0)
         file.write(buffer.getvalue())
