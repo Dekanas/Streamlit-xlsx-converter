@@ -46,7 +46,7 @@ def main():
     import builtins
     def my_hash_func(func):
         return func.__name__
-    @st.cache(hash_funcs={builtins.function: my_hash_func})        
+    @st.cache(hash_funcs={types.FunctionType: my_hash_func})   
     
     def get_data():
         return buffer
