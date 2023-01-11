@@ -17,13 +17,8 @@ if uploaded_file is not None:
 
     # Download transformed data
     buffer = BytesIO()
-    export_file = df.to_excel(buffer, index = None, header=True)
+    export_file = new_excel.to_excel(buffer, index = None, header=True)
     buffer.seek(0)
     st.write("Transform Done!")
     st.markdown("### Download transformed data:")
-    file = st.file_uploader("", type=["xls", "xlsx"], key='file')
-    if file:
-        buffer.seek(0)
-        file.write(buffer.getvalue())
-    if st.button('Download File'):
-        st.success('File downloaded!')
+    st.download_button('Download xlsx', export_file)
