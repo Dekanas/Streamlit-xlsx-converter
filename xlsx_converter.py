@@ -21,4 +21,4 @@ if uploaded_file is not None:
     buffer.seek(0)
     st.write("Transform Done!")
     st.markdown("### Download transformed data:")
-    st.download_button('Download xlsx', export_file)
+    st.download_button('Download xlsx', new_excel)
