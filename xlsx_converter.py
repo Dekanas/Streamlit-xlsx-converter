@@ -17,11 +17,9 @@ if uploaded_file is not None:
 
     # Download transformed data
     buffer = BytesIO()
-    export_file = new_excel.to_excel(buffer, index = None, header=True)
+    export_file = df.to_excel(buffer, index = None, header=True)
     buffer.seek(0)
     st.write("Transform Done!")
     st.markdown("### Download transformed data:")
     st.markdown("[Download Excel File](http://localhost:8501" + 
-                st.set_page_config(page_title="Download", page_icon=":guardsman:", layout="wide") + 
                 f"/files/transformed_data.xlsx)")
-    st.set_page_config(page_title="Excel Transformer", page_icon=":guardsman:", layout="wide")
