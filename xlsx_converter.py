@@ -19,9 +19,10 @@ if uploaded_file is not None:
 
     workbook = xlsxwriter.Workbook(output, {'in_memory': True})
     worksheet = workbook.add_worksheet()
-    worksheet.write(df)
+    for row_num, row_data in enumerate(df):
+        for col_num, col_data in enumerate(row_data):
+            worksheet.write(row_num, col_num, col_data)
     workbook.close()
-    
     st.download_button(
         label="Download Excel workbook",
         data=output.getvalue(),
