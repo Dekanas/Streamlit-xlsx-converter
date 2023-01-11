@@ -19,7 +19,7 @@ if uploaded_file is not None:
     
     csv = convert_df(df)
     
-   st.download_button(
+    st.download_button(
        "Press to Download",
        csv,
        "file.csv",
