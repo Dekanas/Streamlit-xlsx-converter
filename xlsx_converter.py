@@ -9,7 +9,7 @@ st.title("Excel Transformer")
 uploaded_file = st.file_uploader("Choose a CSV file", type=["xls", "xlsx"])
 
 if uploaded_file is not None:
-    df = pd.read_excel(uploaded_file)
+    df = pd.read_excel(uploaded_file, sheet_name = 'Claims')
     st.dataframe(df)
 
     # Transforming data
