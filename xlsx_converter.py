@@ -21,5 +21,9 @@ if uploaded_file is not None:
     buffer.seek(0)
     st.write("Transform Done!")
     st.markdown("### Download transformed data:")
-    st.markdown("[Download Excel File](http://localhost:8501" + 
-                f"/files/transformed_data.xlsx)")
+    file = st.file_uploader("", type=["xls", "xlsx"],encoding='utf-8', key='file')
+    if file:
+        buffer.seek(0)
+        file.write(buffer.getvalue())
+    if st.button('Download File'):
+        st.success('File downloaded!')
