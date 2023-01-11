@@ -19,7 +19,7 @@ if uploaded_file is not None:
         buffer = BytesIO()
         export_file = df.to_excel(buffer, index = None, header=True)
         buffer.seek(0)
-        return buffer.getvalue()
+        return buffer
 
     # Add a button that, when clicked, triggers a download of the transformed data
     if st.button("Download transformed data"):
