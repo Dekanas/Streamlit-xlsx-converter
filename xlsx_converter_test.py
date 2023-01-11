@@ -48,11 +48,10 @@ def main():
     def get_data():
         return buffer
     
-    if st.button("Transform"):
-        st.write("Transforming...")
-        file_data = get_data()
-        if st.download_button("Download transformed data", file_data, "transformed_data.xlsx"):
-            st.write("Download complete")
+    file_data = get_data()
+    
+    if st.download_button("Download transformed data", file_data, "transformed_data.xlsx"):
+        st.write("Download complete")
 
 if __name__ == "__main__":
     main()
