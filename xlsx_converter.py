@@ -38,6 +38,5 @@ if uploaded_file is not None:
        #csv,
        #"file.csv",
        #"text/csv",
-       #key='download-csv'
-    )
+       #key='download-csv')
     
