@@ -34,12 +34,7 @@ def main():
             sheet_df = sheet_df[selected_columns[sheet_name]]
             transformed_df[sheet_name] = sheet_df
         
-        if st.button("Download"):
-            st.write("Dowloading...")
-            with pd.ExcelWriter('transformed_data.xlsx') as writer:
-                for sheet_name in transformed_df.keys():
-                    transformed_df[sheet_name].to_excel(writer, sheet_name=sheet_name, index=False)
-            st.write("Download complete")
+        
             # Create a buffer to save the transformed data as a binary stream
             buffer = BytesIO()
             writer = pd.ExcelWriter(buffer, engine='xlsxwriter')
@@ -48,7 +43,12 @@ def main():
             writer.save()
             buffer.seek(0)
     # Add the download button and set the file name
-    
+    st.markdown("""
+    <form action='download' method='post'>
+        <input type='hidden' name='file' value='transformed_data.xlsx'/>
+        <input type='submit' value='Download' style='background-color: #337ab7;
+        border-color: #2e6da4;'/>
+    </form>""", unsafe_allow_html=True)
     
     @st.cache(allow_output_mutation=True)
     def get_data():
