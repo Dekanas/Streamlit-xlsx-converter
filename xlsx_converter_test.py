@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import openpyxl
+from io import BytesIO
 
 def main():
     st.set_page_config(page_title="Excel File Processing App", page_icon=":guardsman:", layout="wide")
@@ -32,12 +33,25 @@ def main():
             sheet_df.columns = [cell.value for cell in workbook[sheet_name][1]]
             sheet_df = sheet_df[selected_columns[sheet_name]]
             transformed_df[sheet_name] = sheet_df
+        
         if st.button("Download"):
             st.write("Dowloading...")
             with pd.ExcelWriter('transformed_data.xlsx') as writer:
                 for sheet_name in transformed_df.keys():
                     transformed_df[sheet_name].to_excel(writer, sheet_name=sheet_name, index=False)
             st.write("Download complete")
+            # Create a buffer to save the transformed data as a binary stream
+            buffer = BytesIO()
+            writer = pd.ExcelWriter(buffer, engine='xlsxwriter')
+            for sheet_name in transformed_df.keys():
+                transformed_df[sheet_name].to_excel(writer, sheet_name=sheet_name, index=False)
+            writer.save()
+            buffer.seek(0)
+            # Add the download button and set the file name
+            st.markdown("""
+            <button type="button" 
+                style="background-color: #337ab7;
+                border-color: #2e6da4
 
 if __name__ == "__main__":
     main()
