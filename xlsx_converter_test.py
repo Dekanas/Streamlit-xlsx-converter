@@ -44,7 +44,7 @@ def main():
             buffer.seek(0)
             
     
-    @st.cache
+    @st.cache(allow_output_mutation=True)
     def get_data():
         return buffer
     
