@@ -39,7 +39,7 @@ if excel_file is not None:
         sheet_df = sheet_df[selected_columns[sheet_name]]
         for col in selected_columns[sheet_name]:
             if "date" in col.lower():
-                sheet_df[col] = pd.to_datetime(sheet_df[col], format='%Y-%m-%d')
+                sheet_df[col] = pd.to_datetime(sheet_df[col])
         transformed_df[sheet_name] = sheet_df
 
 
