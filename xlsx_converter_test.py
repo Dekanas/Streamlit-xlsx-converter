@@ -3,7 +3,6 @@ import pandas as pd
 import openpyxl
 from io import BytesIO
 
-@st.cache
 def main():
     st.set_page_config(page_title="Excel File Processing App", page_icon=":guardsman:", layout="wide")
     st.title("Upload Excel File")
@@ -45,7 +44,7 @@ def main():
             buffer.seek(0)
             
     
-    
+    @st.cache
     def get_data():
         return buffer
     
