@@ -13,9 +13,9 @@ st.title("Upload Excel File")
 excel_file = st.file_uploader("Choose a spreadsheet", type=["xlsx", "xls"])
 
 if excel_file is not None:
-    excel_file = FileReference(excel_file)
+    excel_file = excel_file
     # Open the workbook and display a summary of each sheet's columns
-    workbook = openpyxl.load_workbook(excel_file.filename)
+    workbook = openpyxl.load_workbook(excel_file)
     sheet_names = workbook.sheetnames
     for sheet_name in sheet_names:
         sheet = workbook[sheet_name]
