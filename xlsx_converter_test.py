@@ -13,7 +13,7 @@ def hash_file_reference(file_reference):
     with open(file_reference.filename) as f:
         return f.read()
 
-@st.cache(hash_funcs={FileReference: hash_file_reference})
+@st.cache(suppress_st_warning=True, hash_funcs={FileReference: hash_file_reference})
 
 def main():
     st.title("Upload Excel File")
