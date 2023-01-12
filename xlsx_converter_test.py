@@ -38,13 +38,13 @@ if excel_file is not None:
         transformed_df[sheet_name] = sheet_df
 
 
-        # Create a buffer to save the transformed data as a binary stream
-        buffer = BytesIO()
-        writer = pd.ExcelWriter(buffer, engine='xlsxwriter')
-        for sheet_name in transformed_df.keys():
-            transformed_df[sheet_name].to_excel(writer, sheet_name=sheet_name, index=False)
-        writer.save()
-        buffer.seek(0)
+    # Create a buffer to save the transformed data as a binary stream
+    buffer = BytesIO()
+    writer = pd.ExcelWriter(buffer, engine='xlsxwriter')
+    for sheet_name in transformed_df.keys():
+        transformed_df[sheet_name].to_excel(writer, sheet_name=sheet_name, index=False)
+    writer.save()
+    buffer.seek(0)
 
 
 #@st.cache(allow_output_mutation=True)
