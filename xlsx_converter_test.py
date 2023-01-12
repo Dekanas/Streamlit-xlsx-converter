@@ -3,6 +3,17 @@ import pandas as pd
 import openpyxl
 from io import BytesIO
 
+
+class FileReference:
+    def __init__(self, filename):
+        self.filename = filename
+
+def hash_file_reference(file_reference):
+    with open(file_reference.filename) as f:
+        return f.read()
+
+@st.cache(hash_funcs={FileReference: hash_file_reference})
+
 def main():
     st.set_page_config(page_title="Excel File Processing App", page_icon=":guardsman:", layout="wide")
     st.title("Upload Excel File")
@@ -11,8 +22,9 @@ def main():
     excel_file = st.file_uploader("Choose a spreadsheet", type=["xlsx", "xls"])
 
     if excel_file is not None:
+        excel_file = FileReference(excel_file)
         # Open the workbook and display a summary of each sheet's columns
-        workbook = openpyxl.load_workbook(excel_file)
+        workbook = openpyxl.load_workbook(excel_file.filename)
         sheet_names = workbook.sheetnames
         for sheet_name in sheet_names:
             sheet = workbook[sheet_name]
@@ -44,7 +56,7 @@ def main():
             buffer.seek(0)
             
     
-    @st.cache(allow_output_mutation=True)
+    #@st.cache(allow_output_mutation=True)
     def get_data():
         return buffer
     
