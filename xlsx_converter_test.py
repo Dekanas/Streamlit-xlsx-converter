@@ -3,6 +3,7 @@ import pandas as pd
 import openpyxl
 from io import BytesIO
 
+st.set_page_config(page_title="Excel File Processing App", page_icon=":guardsman:", layout="wide")
 
 class FileReference:
     def __init__(self, filename):
@@ -15,7 +16,6 @@ def hash_file_reference(file_reference):
 @st.cache(hash_funcs={FileReference: hash_file_reference})
 
 def main():
-    st.set_page_config(page_title="Excel File Processing App", page_icon=":guardsman:", layout="wide")
     st.title("Upload Excel File")
 
     # Allow user to upload an Excel file with multiple sheets
