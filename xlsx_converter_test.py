@@ -13,7 +13,6 @@ st.title("Upload Excel File")
 excel_file = st.file_uploader("Choose a spreadsheet", type=["xlsx", "xls"])
 
 if excel_file is not None:
-    st.dataframe(excel_file)
     excel_file = excel_file
     # Open the workbook and display a summary of each sheet's columns
     workbook = openpyxl.load_workbook(excel_file)
@@ -38,6 +37,9 @@ if excel_file is not None:
         sheet_df.columns = [cell.value for cell in workbook[sheet_name][1]]
         sheet_df = sheet_df.iloc[1:]
         sheet_df = sheet_df[selected_columns[sheet_name]]
+        for col in selected_columns[sheet_name]:
+            if "date" in col.lower():
+                sheet_df[col] = pd.to_datetime(sheet_df[col], format='%Y-%m-%d')
         transformed_df[sheet_name] = sheet_df
 
 
