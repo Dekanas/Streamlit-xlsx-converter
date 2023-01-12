@@ -13,6 +13,7 @@ st.title("Upload Excel File")
 excel_file = st.file_uploader("Choose a spreadsheet", type=["xlsx", "xls"])
 
 if excel_file is not None:
+    st.dataframe(excel_file)
     excel_file = excel_file
     # Open the workbook and display a summary of each sheet's columns
     workbook = openpyxl.load_workbook(excel_file)
@@ -28,7 +29,8 @@ if excel_file is not None:
     selected_columns = {}
     for sheet_name in selected_sheets:
         selected_columns[sheet_name] = st.multiselect(f"Select the columns to keep from {sheet_name}", options=[cell.value for cell in workbook[sheet_name][1]])
-
+    
+    
     # Filter the dataframe and allow to download the modified data.
     transformed_df = {}
     for sheet_name in selected_sheets:
