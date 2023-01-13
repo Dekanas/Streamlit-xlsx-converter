@@ -1,6 +1,5 @@
 import streamlit as st
 import streamlit_elements as st_elements
-from streamlit_elements import data
 
 st.set_page_config(page_title="My Dashboard", page_icon=":guardsman:", layout="wide", initial_sidebar_state="auto")
 
