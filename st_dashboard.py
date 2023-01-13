@@ -1,22 +1,27 @@
 import streamlit as st
-from streamlit_material_components import st_theme
-from streamlit_material_components import st_text
-from streamlit_material_components import st_card
-from streamlit_material_components import st_selectbox
-from streamlit_monaco_editor import st_monaco_code_editor
-import streamlit_nivo
 
-st.beta_set_page_config(page_title="My Dashboard", page_icon=":guardsman:", layout="wide", initial_sidebar_state="auto")
+from streamlit_gallery import apps, components
+from streamlit_gallery.utils.page import page_group
 
-st_theme.set_theme("dark")
+def main():
+    page = page_group("p")
 
-st.title("My Dashboard")
+    with st.sidebar:
+        st.title("Test dashboard")
 
-st_text("Select a data set:")
-data_set = st_selectbox(["Data Set 1", "Data Set 2", "Data Set 3"])
+        with st.expander("✨ APPS", True):
+            page.item("Streamlit gallery", apps.gallery, default=True)
 
-st_text("Enter some code:")
-code = st_monaco_code_editor(language="python", theme="vs-dark")
+        with st.expander("🧩 COMPONENTS", True):
+            page.item("Ace editor", components.ace_editor)
+            page.item("Disqus", components.disqus)
+            page.item("Elements⭐", components.elements)
+            page.item("Pandas profiling", components.pandas_profiling)
+            page.item("Quill editor", components.quill_editor)
+            page.item("React player", components.react_player)
 
-st_card("Results:")
-st_nivo.bar_chart(data_set)
+    page.show()
+
+if __name__ == "__main__":
+    st.set_page_config(page_title="Streamlit Gallery by Okld", page_icon="🎈", layout="wide")
+    main()
