@@ -2,3 +2,4 @@ openpyxl
 xlsxwriter
 streamlit_elements
 streamlit_material_components
+streamlit_monaco_editor
