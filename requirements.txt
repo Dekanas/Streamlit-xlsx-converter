@@ -1,5 +1,14 @@
 openpyxl
 xlsxwriter
-streamlit_elements
-streamlit_material_components
-streamlit_monaco_editor
+# Streamlit components
+streamlit-ace
+streamlit-discourse
+streamlit-disqus
+streamlit-elements
+streamlit-pandas-profiling
+streamlit-player
+streamlit-quill
+
+# Dependencies
+pandas-profiling
+requests
