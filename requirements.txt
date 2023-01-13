@@ -1,5 +1,6 @@
 openpyxl
 xlsxwriter
+streamlit
 # Streamlit components
 streamlit-ace
 streamlit-discourse
