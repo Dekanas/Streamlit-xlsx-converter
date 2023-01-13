@@ -1,19 +1,20 @@
 import streamlit as st
 import streamlit_elements as st_elements
+import streamlit_dnd as dnd
 
 st.set_page_config(page_title="My Dashboard", page_icon=":guardsman:", layout="wide", initial_sidebar_state="auto")
 
 st.title("My Dashboard")
 
 # Use the Drag and Drop component to create a draggable element
-draggable_element = st_elements.drag_and_drop.dnd_container(
+draggable_element = dnd.dnd_container(
     children=[
-        st_elements.text_area(label="Enter some code", key="code")
+        st.text_area("Enter some code")
     ],
-    key="draggable_element",
     style={'background': '#f2f2f2', 'padding': '20px'}
 )
 
+st.write(draggable_element)
 # Use the Resizable component to create a resizable element
 resizable_element = st_elements.resizable.resizable_container(
     children=[
