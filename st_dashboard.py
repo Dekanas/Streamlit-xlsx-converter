@@ -1,27 +1,50 @@
 import streamlit as st
+import streamlit_elements as st_elements
+from streamlit_elements import data
 
-from streamlit_gallery import apps, components
-from streamlit_gallery.utils.page import page_group
+st.set_page_config(page_title="My Dashboard", page_icon=":guardsman:", layout="wide", initial_sidebar_state="auto")
 
-def main():
-    page = page_group("p")
+st.title("My Dashboard")
 
-    with st.sidebar:
-        st.title("Test dashboard")
+# Use the Drag and Drop component to create a draggable element
+draggable_element = st_elements.drag_and_drop.dnd_container(
+    children=[
+        st_elements.text_area(label="Enter some code", key="code")
+    ],
+    key="draggable_element",
+    style={'background': '#f2f2f2', 'padding': '20px'}
+)
 
-        with st.expander("✨ APPS", True):
-            page.item("Streamlit gallery", apps.gallery, default=True)
+# Use the Resizable component to create a resizable element
+resizable_element = st_elements.resizable.resizable_container(
+    children=[
+        st_elements.select_box(label="Select a data set", options=["Data Set 1", "Data Set 2", "Data Set 3"], key="data_set")
+    ],
+    key="resizable_element",
+    style={'background': '#f2f2f2', 'padding': '20px'}
+)
 
-        with st.expander("🧩 COMPONENTS", True):
-            page.item("Ace editor", components.ace_editor)
-            page.item("Disqus", components.disqus)
-            page.item("Elements⭐", components.elements)
-            page.item("Pandas profiling", components.pandas_profiling)
-            page.item("Quill editor", components.quill_editor)
-            page.item("React player", components.react_player)
+# Use the Grid component to create a grid layout
+grid_layout = st_elements.grid.grid_container(
+    children=[
+        resizable_element,
+        draggable_element
+    ],
+    key="grid_layout",
+    style={'background': '#f2f2f2', 'padding': '20px'}
+)
 
-    page.show()
+st_elements.render_element(grid_layout)
 
-if __name__ == "__main__":
-    st.set_page_config(page_title="Streamlit Gallery by Okld", page_icon="🎈", layout="wide")
-    main()
+# Get the data from the draggable and resizable elements
+code = st_elements.get_state("code")
+data_set = st_elements.get_state("data_set")
+
+# Use the Chart component to create a chart
+chart_element = st_elements.chart.chart_container(
+    chart_type='bar',
+    data=data_set,
+    key="chart_element",
+    style={'background': '#f2f2f2', 'padding': '20px'}
+)
+st_elements.render_element(chart_element)
